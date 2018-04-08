@@ -10,5 +10,9 @@ end
 
 Then(/^the following budget will exist$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
+  wait_for_element_does_not_exist "Save"
+  table.hashes.each do | row |
+    wait_for_text row['month']
+    wait_for_text row['amount']
+  end
 end
